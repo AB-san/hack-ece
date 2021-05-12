@@ -1,3 +1,25 @@
+img#doge
+{
+    position: fixed;
+    bottom: -75px;
+    margin: 0;
+    right: 10%;
+    transition-property:bottom;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+}
+
+img#doge:hover
+{
+    bottom: 0;
+}
+
+@media screen and (max-width: 600px)
+{
+    img#doge {
+    display: none;
+    }
+}
 div#container
 {
    width: 1080px;
