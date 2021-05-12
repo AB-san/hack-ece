@@ -208,10 +208,10 @@ function hammingCodeRtoLOdd(x){
 
 //function for  error detection of a message in hamming code
 function hammingCalc1(){
-    let input1 = document.getElementById("detect-input").value;
-    const type1 = document.getElementById("detect-type1").value;
-    const type2 = document.getElementById("detect-type2").value;
-    let result1 = document.getElementById("detect-result");
+    let input1 = document.getElementById("input2").value;
+    const type1 = document.getElementById("drop4").value;
+    const type2 = document.getElementById("drop3").value;
+    let result1 = document.getElementById("output3");
 
     if(type1 === "Right-To-Left" && type2 === "Even"){//right to left with even parity
         let n = input1.length;
@@ -344,8 +344,25 @@ function hammingCalc1(){
 }
 
 //-----------------------------------------------------------------------------------------------------
-
 //correction of message in hamming code
+function hammingCalc2(){
+    let input1 = document.getElementById("input2").value;
+    const type1 = document.getElementById("drop4").value;
+    const type2 = document.getElementById("drop3").value;
+    let result1 = document.getElementById("output2");
+
+    if(type1 === "Left-To-Right" && type2 ==="Even"){
+        result1.value = hammingcrctnEvenLtoR(input1);
+    }else if(type1 === "Right-To-Left" && type2 === "Even"){
+        result1.value = hammingcrctnEvenRtoL(input1);
+    }else if(type1 === "Left-To-Right" && type2 === "Odd"){
+        result1.value = hammingcrctnOddLtoR(input1);
+    }else if(type1 === "Right-To-Left" && type2 === "Odd"){
+        result1.value = hammingcrctnOddRtoL(input1);
+    }
+
+}
+
 function hammingcrctnEvenRtoL(x){
     let n = x.length;
     let k=0,ctr=0;
@@ -363,18 +380,18 @@ function hammingcrctnEvenRtoL(x){
                     }
                 }
             }
-            //console.log(ctr);
+            console.log(ctr);
             if(ctr % 2 == 0){
                 parity +="0";//parity +="1";//for odd
             }else if(ctr % 2 == 1 ){
                 parity +="1";//parity +="0";//for odd
             }
-            
+
             ctr = 0;
             k++;
         }
     }
-    //console.log(parity);
+    console.log(parity);
     if(parseInt(parity)==0){
         result = "Error Free";
         return result;
@@ -396,8 +413,154 @@ function hammingcrctnEvenRtoL(x){
     }
 }
 
+function hammingcrctnEvenLtoR(x){
+    let n = x.length;
+    let k=0,ctr=0;
+    var parity = "";
+    var result ="";
+    for (var i = 0; i < n;i++){
+        if((i+1)== Math.pow(2,k)){
+            for(var j =i;j < n; j++){
+                if(((i+1) & (j+1)) == (i+1)){
+                    if(x[j] == "1"){
+                        ctr++;
+                    }else{
+                        ctr +=0;
+                    }
+                }
+            }
+            console.log(ctr);
+            if(ctr % 2 == 0){
+                parity +="0";
+            }else if(ctr % 2 == 1 ){
+                parity +="1";
+            }
+
+            ctr = 0;
+            k++;
+        }
+    }
+    console.log(parity);
+    if(parseInt(parity)==0){
+        result = "Error Free";
+        return result;
+    }else{
+        parity =  parity.split("").reverse().join("");
+        var p = parseInt(parity,2);
+        for(var a = 0; a<n;a++){
+            if(a == p-1){
+                if(x[a] == "1"){
+                    result +="0";
+                }else{
+                    result +="1";
+                }
+            }else{
+                result += x[a];
+            }
+        }
+        return result;
+    }
+}
+
+function hammingcrctnOddRtoL(x){
+    let n = x.length;
+    let k=0,ctr=0;
+    var parity = "";
+    var result ="";
+    x= x.split("").reverse().join("");
+    for (var i = 0; i < n;i++){
+        if((i+1)== Math.pow(2,k)){
+            for(var j =i;j < n; j++){
+                if(((i+1) & (j+1)) == (i+1)){
+                    if(x[j] == "1"){
+                        ctr++;
+                    }else{
+                        ctr +=0;
+                    }
+                }
+            }
+            console.log(ctr);
+            if(ctr % 2 == 0){
+                parity +="1";
+            }else if(ctr % 2 == 1 ){
+                parity +="0";
+            }
+
+            ctr = 0;
+            k++;
+        }
+    }
+    console.log(parity);
+    if(parseInt(parity)==0){
+        result = "Error Free";
+        return result;
+    }else{
+        parity =  parity.split("").reverse().join("");
+        var p = parseInt(parity,2);
+        for(var a = 0; a<n;a++){
+            if(a == p-1){
+                if(x[a] == "1"){
+                    result +="0";
+                }else{
+                    result +="1";
+                }
+            }else{
+                result += x[a];
+            }
+        }
+        return result.split("").reverse().join("");
+    }
+}
+
+function hammingcrctnOddLtoR(x){
+    let n = x.length;
+    let k=0,ctr=0;
+    var parity = "";
+    var result ="";
+    for (var i = 0; i < n;i++){
+        if((i+1)== Math.pow(2,k)){
+            for(var j =i;j < n; j++){
+                if(((i+1) & (j+1)) == (i+1)){
+                    if(x[j] == "1"){
+                        ctr++;
+                    }else{
+                        ctr +=0;
+                    }
+                }
+            }
+            console.log(ctr);
+            if(ctr % 2 == 0){
+                parity +="1";
+            }else if(ctr % 2 == 1 ){
+                parity +="0";
+            }
+
+            ctr = 0;
+            k++;
+        }
+    }
+    console.log(parity);
+    if(parseInt(parity)==0){
+        result = "Error Free";
+        return result;
+    }else{
+        parity =  parity.split("").reverse().join("");
+        var p = parseInt(parity,2);
+        for(var a = 0; a<n;a++){
+            if(a == p-1){
+                if(x[a] == "1"){
+                    result +="0";
+                }else{
+                    result +="1";
+                }
+            }else{
+                result += x[a];
+            }
+        }
+        return result;
+    }
+}
 //-------------------------------------------------------------
-//decoding of message in hamming code
 
 //function for binary to bcd code
 function convertbcd() {
