@@ -206,8 +206,197 @@ function hammingCodeRtoLOdd(x){
     return res1.split("").reverse().join(""); //reverse the ans to get the ans for R to L
 }
 
-//detection of error in hamming code
+//function for  error detection of a message in hamming code
+function hammingCalc1(){
+    let input1 = document.getElementById("detect-input").value;
+    const type1 = document.getElementById("detect-type1").value;
+    const type2 = document.getElementById("detect-type2").value;
+    let result1 = document.getElementById("detect-result");
+
+    if(type1 === "Right-To-Left" && type2 === "Even"){//right to left with even parity
+        let n = input1.length;
+        let k=0,ctr=0;
+        var parity = "";
+        input1= input1.split("").reverse().join("");
+        for (var i = 0; i < n;i++){
+            if((i+1)== Math.pow(2,k)){
+                for(var j =i;j < n; j++){
+                    if(((i+1) & (j+1)) == (i+1)){
+                        if(input1[j] == "1"){
+                            ctr++;
+                        }else{
+                            ctr +=0;
+                        }
+                    }
+                }
+                if(ctr % 2 == 0){
+                    parity +="0";
+                }else if(ctr % 2 == 1 ){
+                    parity +="1";
+                }
+                ctr = 0;
+                k++;
+            }
+        }
+        if(parseInt(parity)==0){
+            result1.innerHTML = "Error Free";
+        }else{
+            parity =  parity.split("").reverse().join("");
+            var p = parseInt(parity,2).toString();
+            result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + `${(n-p)+1}` + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" + p +"&nbsp;&nbsp; from right";
+        }
+    }else if(type1 === "Left-To-Right" && type2 === "Even"){ //left to right using even parity
+        let n = input1.length;
+        let k=0,ctr=0;
+        var parity = "";
+        for (var i = 0; i < n;i++){
+            if((i+1)== Math.pow(2,k)){
+                for(var j =i;j < n; j++){
+                    if(((i+1) & (j+1)) == (i+1)){
+                        if(input1[j] == "1"){
+                            ctr++;
+                        }else{
+                            ctr +=0;
+                        }
+                    }
+                }
+                if(ctr % 2 == 0){
+                    parity +="0";
+                }else if(ctr % 2 == 1 ){
+                    parity +="1";
+                }
+                ctr = 0;
+                k++;
+            }
+        }
+        if(parseInt(parity)==0){
+            result1.innerHTML = "Error Free";
+        }else{
+            parity =  parity.split("").reverse().join("");
+            var p = parseInt(parity,2).toString();
+            result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + p + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" +  `${(n-p)+1}` +"&nbsp;&nbsp; from right";
+        }
+    }else if (type1 === "Right-To-Left" && type2 === "Odd"){//for right to left using odd parity
+        let n = input1.length;
+        let k=0,ctr=0;
+        var parity = "";
+        input1= input1.split("").reverse().join("");
+        for (var i = 0; i < n;i++){
+            if((i+1)== Math.pow(2,k)){
+                for(var j =i;j < n; j++){
+                    if(((i+1) & (j+1)) == (i+1)){
+                        if(input1[j] == "1"){
+                            ctr++;
+                        }else{
+                            ctr +=0;
+                        }
+                    }
+                }
+                if(ctr % 2 == 0){
+                    parity +="1";
+                }else if(ctr % 2 == 1 ){
+                    parity +="0";
+                }
+                ctr = 0;
+                k++;
+            }
+        }
+        if(parseInt(parity)==0){
+            result1.innerHTML = "Error Free";
+        }else{
+            parity =  parity.split("").reverse().join("");
+            var p = parseInt(parity,2).toString();
+            result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + `${(n-p)+1}` + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" + p +"&nbsp;&nbsp; from right";
+        }
+    }else if(type1 === "Left-To-Right" && type2 === "Odd"){//left to right using odd parity
+        let n = input1.length;
+        let k=0,ctr=0;
+        var parity = "";
+        for (var i = 0; i < n;i++){
+            if((i+1)== Math.pow(2,k)){
+                for(var j =i;j < n; j++){
+                    if(((i+1) & (j+1)) == (i+1)){
+                        if(input1[j] == "1"){
+                            ctr++;
+                        }else{
+                            ctr +=0;
+                        }
+                    }
+                }
+                if(ctr % 2 == 0){
+                    parity +="1";
+                }else if(ctr % 2 == 1 ){
+                    parity +="0";
+                }
+                ctr = 0;
+                k++;
+            }
+        }
+        if(parseInt(parity)==0){
+            result1.innerHTML = "Error Free";
+        }else{
+            parity =  parity.split("").reverse().join("");
+            var p = parseInt(parity,2).toString();
+
+            result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + p + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" + `${(n-p)+1}` +"&nbsp;&nbsp; from right";
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------------------------------
+
 //correction of message in hamming code
+function hammingcrctnEvenRtoL(x){
+    let n = x.length;
+    let k=0,ctr=0;
+    var parity = "";
+    var result ="";
+    x= x.split("").reverse().join("");//remove this for LtoR
+    for (var i = 0; i < n;i++){
+        if((i+1)== Math.pow(2,k)){
+            for(var j =i;j < n; j++){
+                if(((i+1) & (j+1)) == (i+1)){
+                    if(x[j] == "1"){
+                        ctr++;
+                    }else{
+                        ctr +=0;
+                    }
+                }
+            }
+            //console.log(ctr);
+            if(ctr % 2 == 0){
+                parity +="0";//parity +="1";//for odd
+            }else if(ctr % 2 == 1 ){
+                parity +="1";//parity +="0";//for odd
+            }
+            
+            ctr = 0;
+            k++;
+        }
+    }
+    //console.log(parity);
+    if(parseInt(parity)==0){
+        result = "Error Free";
+        return result;
+    }else{
+        parity =  parity.split("").reverse().join("");
+        var p = parseInt(parity,2);
+        for(var a = 0; a<n;a++){
+            if(a == p-1){
+                if(x[a] == "1"){
+                    result +="0";
+                }else{
+                    result +="1";
+                }
+            }else{
+                result += x[a];
+            }
+        }
+        return result.split("").reverse().join("");//return result;//for LtoR
+    }
+}
+
+//-------------------------------------------------------------
 //decoding of message in hamming code
 
 //function for binary to bcd code
