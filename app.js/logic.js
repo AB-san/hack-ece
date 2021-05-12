@@ -213,7 +213,7 @@ function hammingCalc1(){
     const type2 = document.getElementById("drop3").value;
     let result1 = document.getElementById("output3");
 
-    if(type1 === "Right-To-Left" && type2 === "Even"){//right to left with even parity
+    if(type1 === "Right-To-Left" && type2 === "Even" && input1.length != 0){//right to left with even parity
         let n = input1.length;
         let k=0,ctr=0;
         var parity = "";
@@ -245,7 +245,7 @@ function hammingCalc1(){
             var p = parseInt(parity,2).toString();
             result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + `${(n-p)+1}` + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" + p +"&nbsp;&nbsp; from right";
         }
-    }else if(type1 === "Left-To-Right" && type2 === "Even"){ //left to right using even parity
+    }else if(type1 === "Left-To-Right" && type2 === "Even" && input1.length != 0){ //left to right using even parity
         let n = input1.length;
         let k=0,ctr=0;
         var parity = "";
@@ -276,7 +276,7 @@ function hammingCalc1(){
             var p = parseInt(parity,2).toString();
             result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + p + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" +  `${(n-p)+1}` +"&nbsp;&nbsp; from right";
         }
-    }else if (type1 === "Right-To-Left" && type2 === "Odd"){//for right to left using odd parity
+    }else if (type1 === "Right-To-Left" && type2 === "Odd" && input1.length != 0){//for right to left using odd parity
         let n = input1.length;
         let k=0,ctr=0;
         var parity = "";
@@ -308,7 +308,7 @@ function hammingCalc1(){
             var p = parseInt(parity,2).toString();
             result1.innerHTML = "The position of error is  &nbsp; &nbsp; " + `${(n-p)+1}` + "&nbsp;&nbsp; from left or &nbsp;&nbsp;" + p +"&nbsp;&nbsp; from right";
         }
-    }else if(type1 === "Left-To-Right" && type2 === "Odd"){//left to right using odd parity
+    }else if(type1 === "Left-To-Right" && type2 === "Odd" && input1.length != 0){//left to right using odd parity
         let n = input1.length;
         let k=0,ctr=0;
         var parity = "";
