@@ -7,6 +7,7 @@
     <link href="Untitled1.css" rel="stylesheet">
     <link href="index.css" rel="stylesheet">
     <script src="jquery-1.12.4.min.js"></script>
+    <script src="app.js/logic.js"></script>
     <script src="wb.animatetext.min.js"></script>
     <script src="wb.panel.min.js"></script>
     <script>
@@ -37,30 +38,37 @@
         <div id="wb_Text1" style="position:absolute;left:439px;top:166px;width:92px;height:24px;z-index:1;">
             <h2>Encoder</h2>
         </div>
+
+        <input type="number" id="input1" style="position:absolute;left:372px;top:216px;width:242px;height:21px;z-index:3;" name="Data Bit" value="" spellcheck="false" placeholder="Enter the Data Bit">
         <select name="Parity" size="1" id="drop1" style="position:absolute;left:374px;top:276px;width:249px;height:28px;z-index:2;">
-            <option selected value="">Even parity</option>
-            <option>Odd parity</option>
+            <option selected value="Even">Even parity</option>
+            <option value = "Odd">Odd parity</option>
         </select>
-        <input type="text" id="input1" style="position:absolute;left:372px;top:216px;width:242px;height:21px;z-index:3;" name="Data Bit" value="" spellcheck="false" placeholder="Enter the Data Bit">
         <select name="Direction" size="1" id="drop2" style="position:absolute;left:374px;top:315px;width:249px;height:32px;z-index:4;">
-            <option selected value="">Right to Left</option>
-            <option>Left to Right </option>
+            <option selected value="Right-To-Left">Right to Left</option>
+            <option value = "Left-To-Right">Left to Right </option>
         </select>
-        <input type="text" id="output1" style="position:absolute;left:372px;top:369px;width:242px;height:21px;z-index:5;" name="Messege" value="" spellcheck="false">
+        <input type="submit" id="Button1" name="" value="Encode" onclick="hammingCalc()"style="position:absolute;left:653px;top:318px;width:82px;height:27px;z-index:13;">
+        <input type="number" id="output1" style="position:absolute;left:372px;top:369px;width:242px;height:21px;z-index:5;" name="Messege" value="" spellcheck="false">
+
+        <hr id="Line1" style="position:absolute;left:0px;top:454px;width:993px;z-index:11;">
+
+        <input type="number" id="input2" style="position:absolute;left:372px;top:583px;width:242px;height:21px;z-index:8;" name="Messege" value="" spellcheck="false" placeholder="Enter the Messege">
         <div id="wb_Text2" style="position:absolute;left:439px;top:534px;width:92px;height:24px;z-index:6;">
             <h2>Decoder</h2>
         </div>
         <select name="Parity" size="1" id="drop3" style="position:absolute;left:374px;top:643px;width:249px;height:28px;z-index:7;">
-            <option selected value="">Even parity</option>
-            <option>Odd parity</option>
+            <option selected value="1">Even parity</option>
+            <option value ="2">Odd parity</option>
         </select>
-        <input type="text" id="input2" style="position:absolute;left:372px;top:583px;width:242px;height:21px;z-index:8;" name="Messege" value="" spellcheck="false" placeholder="Enter the Messege">
         <select name="Direction" size="1" id="drop4" style="position:absolute;left:374px;top:683px;width:249px;height:33px;z-index:9;">
-            <option selected value="">Right to Left</option>
-            <option>Left to Right </option>
+            <option selected value="1">Right to Left</option>
+            <option value ="2">Left to Right </option>
         </select>
-        <input type="text" id="output2" style="position:absolute;left:372px;top:736px;width:242px;height:21px;z-index:10;" name="Messege" value="" spellcheck="false">
-        <hr id="Line1" style="position:absolute;left:0px;top:454px;width:993px;z-index:11;">
+        <input type="submit" id="Button2" name="" value="Decode" style="position:absolute;left:653px;top:686px;width:82px;height:27px;z-index:14;">
+        <input type="number" id="output2" style="position:absolute;left:372px;top:736px;width:242px;height:21px;z-index:10;" name="Messege" value="" spellcheck="false">
+
+
         <div id="wb_PanelMenu1" style="position:absolute;left:0px;top:16px;width:94px;height:74px;text-align:center;z-index:12;">
             <a href="#PanelMenu1_markup" id="PanelMenu1">Menu</a>
             <div id="PanelMenu1_markup">
@@ -71,8 +79,6 @@
                 </ul>
             </div>
         </div>
-        <input type="submit" id="Button1" name="" value="Encode" style="position:absolute;left:653px;top:318px;width:82px;height:27px;z-index:13;">
-        <input type="submit" id="Button2" name="" value="Decode" style="position:absolute;left:653px;top:686px;width:82px;height:27px;z-index:14;">
 </body>
 
 </html>

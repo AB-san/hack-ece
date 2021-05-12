@@ -1,18 +1,18 @@
 //function for encoding a message hamming code
 function hammingCalc(){
-    const input = document.getElementById("hamming-input").value;
-    const type1 = document.getElementById("hamming-select1").value;
-    const type2 = document.getElementById("hamming-select2").value;
-    let result = document.getElementById("hamming-result");
+    const input = document.getElementById("input1").value;
+    const type1 = document.getElementById("drop2").value;
+    const type2 = document.getElementById("drop1").value;
+    let result = document.getElementById("output1");
 
     if(type1 === "Left-To-Right" && type2 ==="Even"){
-        result.innerHTML = hammingCodeLtoREven(input);
+        result.value = hammingCodeLtoREven(input);
     }else if(type1 === "Right-To-Left" && type2 === "Even"){
-        result.innerHTML = hammingCodeRtoLEven(input);
+        result.value = hammingCodeRtoLEven(input);
     }else if(type1 === "Left-To-Right" && type2 === "Odd"){
-        result.innerHTML = hammingCodeLtoROdd(input);
+        result.value = hammingCodeLtoROdd(input);
     }else if(type1 === "Right-To-Left" && type2 === "Odd"){
-        result.innerHTML = hammingCodeRtoLOdd(input);
+        result.value = hammingCodeRtoLOdd(input);
     }
 }
 
@@ -431,7 +431,7 @@ function addBinDecHexOct(){
     let result = document.getElementById("adding-all-result");
     var x1,x1o;
     var x2,x2o;
-   
+
     if(firstBase === "Binary"){
         x1=parseInt(input1,2);
         x1o=x1.toString(2);
@@ -547,7 +547,7 @@ function subBinDecHexOct(){
             print += "<br><h5>STEP 3 : Find 2's complement of sum found in 'STEP 1'</h5>";
             print += "ANSWER (Two's complement of the sum) ->   <span style='text-decoration: underline;'>-" + ans + "</span>";
         }
-        
+
     }else if(base === "Octal"){
         var add1 = "";
         var ans1 = "";
@@ -583,7 +583,7 @@ function subBinDecHexOct(){
             print += "<br><h5>STEP 3 : Find 8's complement of sum found in 'STEP 1'</h5>";
             print += "ANSWER (Eight's complement of the sum) ->   <span style='text-decoration: underline;'>-" + ans1 + "</span>";
         }
-        
+
     }else if(base === "Hexa Decimal"){
         var add2 = "";
         var ans2 = "";
